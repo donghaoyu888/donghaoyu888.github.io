@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>页面懒加载</title>
+        <style>
+            img {
+                display: block;
+                margin: 0 auto 50px;
+                width: 960px;
+                height: 540px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box" v-lee>
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzutb8xegj31hc0u0k77.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzutz6y29j31hc0u0ak4.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuu8igyyj31hc0u0qgv.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuug47wrj31hc0u0k2q.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuuowb0hj31hc0u0akx.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuuyjapsj31hc0u0ths.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzutb8xegj31hc0u0k77.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzutz6y29j31hc0u0ak4.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuu8igyyj31hc0u0qgv.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuug47wrj31hc0u0k2q.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuuowb0hj31hc0u0akx.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuuyjapsj31hc0u0ths.jpg" alt="">        
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzutb8xegj31hc0u0k77.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzutz6y29j31hc0u0ak4.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuu8igyyj31hc0u0qgv.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuug47wrj31hc0u0k2q.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuuowb0hj31hc0u0akx.jpg" alt="">
+            <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/005ODVHQgy1fuzuuyjapsj31hc0u0ths.jpg" alt="">
+        </div>
+        
+    </body>
+    <script src="javascripts/vue.js"></script>
+    <script>
+        Vue.directive('lee',{
+            inserted(dom){
+                var num = dom.getElementsByTagName('img').length;
+                var img = dom.getElementsByTagName("img");
+                var n = 0;
+                lazyload();                                
+                window.onscroll = lazyload;
+                function lazyload() {
+                    var seeHeight = document.documentElement.clientHeight;
+                    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    for (var i = n; i < num; i++) {
+                        if (img[i].offsetTop < seeHeight + scrollTop) {
+                            if (img[i].getAttribute("src") == "default.jpg") {
+                                img[i].src = img[i].getAttribute("data-src");
+                            }
+                            n = i + 1;
+                        }
+                    }
+                }
+            }
+        })
+        new Vue({
+            el:'#box'
+        })
+    </script>
+</html>
