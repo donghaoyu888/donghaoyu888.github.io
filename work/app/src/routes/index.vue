@@ -149,7 +149,7 @@
 			});
 		}
 	}
-	
+
 </script>
 
 <style>
@@ -220,7 +220,7 @@
    		min-height: 300px;
    		overflow: hidden;
    		background: #f8f8f8;
-   		padding: 50px 200px;
+      padding: 50px 119px;
    	}
    	.about_some_box{
    		float: left;
@@ -255,7 +255,7 @@
    	.index_women_box_o{
 		padding: 40px 200px;
 		min-height: 400px;
-		overflow: hidden;  	
+		overflow: hidden;
    	}
 	.index_women_box_o div{
 		width: 50%;

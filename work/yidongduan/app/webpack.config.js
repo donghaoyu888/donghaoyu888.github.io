@@ -2,24 +2,26 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',//入口文件
+  entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: './dist/',
     filename: 'build.js'
-  },//出口文件
+  },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.css$/,
         use: [
           'vue-style-loader',
           'css-loader'
         ],
-      },{
+      },      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {}
+          loaders: {
+          }
           // other vue-loader options go here
         }
       },
@@ -29,7 +31,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg|woff|ttf)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
@@ -46,7 +48,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
   },
   performance: {
     hints: false
@@ -55,7 +57,6 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  // 生产模式
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
